@@ -23,7 +23,7 @@
  
 declare(strict_types = 1);
 
-namespace skymin\bossbar;
+namespace libs\bossbar;
 
 use pocketmine\utils\SingletonTrait;
 
