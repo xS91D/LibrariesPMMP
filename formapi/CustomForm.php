@@ -23,7 +23,7 @@ declare(strict_types=1);
 
 namespace libs\formapi;
 
-use dktapps\pmforms\element\CustomFormElement;
+use libs\fornapi\element\CustomFormElement;
 use pocketmine\form\FormValidationException;
 use pocketmine\player\Player;
 use pocketmine\utils\Utils;

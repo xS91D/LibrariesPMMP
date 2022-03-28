@@ -7,7 +7,7 @@
 *  |___/_|_\\___|____/_/ \_\___/ 
 *
 * @author: iSrDxv (SrClau)
-* @status: Beta
+* @status: Stable
 */
 
 namespace libs\scoreboard;
@@ -93,16 +93,14 @@ class Scoreboard
     $entry->customName = $description;
     $entry->objectiveName = $this->getPlayer()->getName();
     $this->lines[$line] = $entry;
-    
-
-
-    
+   
     $pk = new SetScorePacket();
     $pk->type = SetScorePacket::TYPE_CHANGE;   
     $pk->entries[] = $entry;
     $this->getPlayer()->getNetworkSession()->sendDataPacket($pk);
   }
   
+  //TODO: finish this
   public function setAllLine(array $lines): void
   {
     $entries = [];
@@ -124,7 +122,9 @@ class Scoreboard
   {
     $line = $this->lines[$id];
     if (isset($line)) {
-      $pk = SetScorePacket::create(SetScorePacket::TYPE_REMOVE, [$line]);
+      $pk = new SetScorePacket();
+      $pk->type = SetScorePacket::TYPE_REMOVE;
+      $pk->entries[] = $line;
       $this->getPlayer()->getNetworkSession()->sendDataPacket();
       unset($line);
     }
