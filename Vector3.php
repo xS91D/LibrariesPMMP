@@ -18,7 +18,7 @@ class Vector3 {
     ];
   }
   
-  public function arrayStringToVector3(array $vector): Vector3
+  public function arrayToVector3(array $vector): Vector3
   {
     return new Vector3($vector[0], $vector[1], $vector[2]);
   }
@@ -35,5 +35,7 @@ class Vector3 {
   {
     return new Position($vector[0], $vector[1], $vector[2], $vector[3]);
   }
+  
+}}
   
 }
