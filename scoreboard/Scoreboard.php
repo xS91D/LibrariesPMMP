@@ -77,9 +77,14 @@ class Scoreboard
     $this->getPlayer()->getNetworkSession()->sendDataPacket($pk);
   }
   
+  public function getLine(int $line): bool
+  {
+    return isset($this->lines[$line]) ? true : false ?? null;
+  }
+   
   public function setLine(int $line, string $description = ""): void
   {
-    if (isset($this->line[$line])) {
+    if (isset($this->lines[$line])) {
       $pk = new SetScorePacket(SetScorePacket::TYPE_REMOVE, [$this->lines[$line]]);
       $this->getPlayer()->getNetworkSession()->sendDataPacket($pk);
       unset($this->lines[$line]);
@@ -104,17 +109,19 @@ class Scoreboard
   public function setAllLine(array $lines): void
   {
     $entries = [];
-    for ($i = 0; $i < 15; $i++) {
+    for ($i = count($this->lines); $i < 15; $i++) {
     $entry = new ScorePacketEntry();
     $entry->type = ScorePacketEntry::TYPE_FAKE_PLAYER;
     $entry->scoreboardId = $i; $entry->score = $i;
     $entry->customName = $lines[$i];
     $entry->objectiveName = $this->getPlayer()->getName();
-    $this->lines = $lines;
+    $this->lines[$i] = $entry;
     $entries[] = $entry;
     }
     
-    $pk = SetScorePacket::create(SetScorePacket::TYPE_CHANGE, $entries);
+    $pk = new SetScorePacket();
+    $pk->type = SetScorePacket::TYPE_CHANGE;
+    $pk->entries = $entries;
     $this->getPlayer()->getNetworkSession()->sendDataPacket($pk);
   }
   
@@ -135,7 +142,11 @@ class Scoreboard
     if (empty($this->lines) && ($this->spawned !== true)) {
       return;
     }
-    $pk = SetScorePacket::create(SetScorePacket::TYPE_REMOVE, $this->lines);
+    $lines = [];
+    foreach($this->lines as $line) {
+      $lines[] = $line;
+    }
+    $pk = SetScorePacket::create(SetScorePacket::TYPE_REMOVE, $lines);
     $this->getPlayer()->getNetworkSession()->sendDataPacket($pk);
     $this->lines = [];
   }
