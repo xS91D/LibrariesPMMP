@@ -10,6 +10,7 @@ use libs\invmenu\type\graphic\BlockActorInvMenuGraphic;
 use libs\invmenu\type\graphic\InvMenuGraphic;
 use libs\invmenu\type\graphic\network\InvMenuGraphicNetworkTranslator;
 use libs\invmenu\type\util\InvMenuTypeHelper;
+use libs\invmenu\type\FixedInvMenuType;
 use pocketmine\block\Block;
 use pocketmine\inventory\Inventory;
 use pocketmine\player\Player;

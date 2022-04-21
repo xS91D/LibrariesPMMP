@@ -7,7 +7,7 @@ namespace libs\invmenu\type\graphic\network;
 use InvalidArgumentException;
 use libs\invmenu\session\InvMenuInfo;
 use libs\invmenu\session\PlayerSession;
-use libs\invmenu\graphic\PositionedInvMenuGraphic;
+use libs\invmenu\type\graphic\PositionedInvMenuGraphic;
 use pocketmine\network\mcpe\protocol\ContainerOpenPacket;
 use pocketmine\network\mcpe\protocol\types\BlockPosition;
 

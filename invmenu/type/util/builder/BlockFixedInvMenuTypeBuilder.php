@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace libs\invmenu\type\util\builder;
 
+use libs\invmenu\type\util\builder\InvMenuTypeBuilder;
 use libs\invmenu\type\BlockFixedInvMenuType;
 use libs\invmenu\type\graphic\network\BlockInvMenuGraphicNetworkTranslator;
 
